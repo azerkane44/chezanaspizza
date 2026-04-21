@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Chez Anas Pizza</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-chez">Chez Anas</span>
+        <span class="logo-pizza">PIZZA</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <h1>📍 Nous Contacter</h1>
+    <p>Une question, une commande ? On est là !</p>
+  </div>
+
+  <section class="contact-section">
+    <div class="container contact-grid">
+
+      <!-- INFOS -->
+      <div class="contact-info">
+        <h2>Nos coordonnées</h2>
+
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h3>Téléphone</h3>
+            <a href="tel:0987004520">09.87.00.45.20</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <h3>Site web</h3>
+            <a href="http://www.lapizza-montereau.fr" target="_blank">www.lapizza-montereau.fr</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h3>Adresse</h3>
+            <p>Montereau-Fault-Yonne<br />Île-de-France</p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h3>Horaires d'ouverture</h3>
+            <table class="horaires-table">
+              <tr><td>Lundi – Vendredi</td><td>11h00 – 14h00 / 18h00 – 22h30</td></tr>
+              <tr><td>Samedi – Dimanche</td><td>11h00 – 22h30 (non-stop)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="promo-contact-box">
+          <p>🎉 Rappel : <strong>1 Pizza achetée = 1 Pizza offerte</strong><br />Valable sur place et à emporter !</p>
+        </div>
+      </div>
+
+      <!-- FORMULAIRE -->
+      <div class="contact-form-wrap">
+        <h2>Envoyez-nous un message</h2>
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" placeholder="Jean Dupont" required />
+            <span class="form-error" id="nameError"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Votre e-mail</label>
+            <input type="email" id="email" placeholder="jean@example.com" required />
+            <span class="form-error" id="emailError"></span>
+          </div>
+          <div class="form-group">
+            <label for="subject">Sujet</label>
+            <select id="subject">
+              <option value="">Choisir un sujet...</option>
+              <option value="commande">Commande / Livraison</option>
+              <option value="reclamation">Réclamation</option>
+              <option value="evenement">Événement / Privatisation</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Votre message</label>
+            <textarea id="message" rows="5" placeholder="Votre message ici..." required></textarea>
+            <span class="form-error" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Envoyer le message ✉️</button>
+          <div class="form-success" id="formSuccess" style="display:none">
+            ✅ Merci ! Votre message a bien été envoyé. Nous vous répondrons rapidement.
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- CARTE -->
+    <div class="container">
+      <div class="map-embed">
+        <h2 style="text-align:center; margin-bottom:1rem;">🗺️ Nous trouver</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42039.97!2d2.8494!3d48.3804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea5d7e69d5b89f%3A0x40b82c3688b2b90!2sMontereau-Fault-Yonne!5e0!3m2!1sfr!2sfr!4v1234567890"
+          width="100%" height="350" style="border:0; border-radius:16px;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Localisation Chez Anas Pizza"></iframe>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="cta-band">
+    <p>📞 Commandez maintenant : <a href="tel:0987004520"><strong>09.87.00.45.20</strong></a></p>
+  </div>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="yellow">Chez Anas</span> <span class="red">PIZZA</span>
+    </div>
+    <p>📞 09.87.00.45.20 &nbsp;|&nbsp; 🌐 www.lapizza-montereau.fr</p>
+    <p class="footer-copy">© 2026 Chez Anas Pizza – Tous droits réservés</p>
+    <div class="footer-nav">
+      <a href="index.html">Accueil</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

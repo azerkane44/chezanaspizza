@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu – Chez Anas Pizza</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-chez">Chez Anas</span>
+        <span class="logo-pizza">PIZZA</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <h1>🍕 Notre Menu</h1>
+    <p>Des pizzas généreuses, cuites à la perfection</p>
+    <div class="promo-banner-inline">
+      🎉 <strong>1 Pizza achetée = 1 Pizza offerte</strong> – Profitez de l'offre dès maintenant !
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <section class="menu-section">
+    <div class="container">
+      <div class="menu-filters">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="classique">Classiques</button>
+        <button class="filter-btn" data-filter="viande">Viandes</button>
+        <button class="filter-btn" data-filter="vegetarienne">Végétariennes</button>
+        <button class="filter-btn" data-filter="speciale">Spéciales</button>
+      </div>
+
+      <!-- TAILLES -->
+      <div class="size-info">
+        <div class="size-badge">🍕 Petite : ~28cm</div>
+        <div class="size-badge">🍕 Grande : ~36cm</div>
+        <div class="size-badge">🍕 Maxi : ~42cm</div>
+      </div>
+
+      <!-- CATÉGORIE : CLASSIQUES -->
+      <div class="menu-category" id="cat-classique">
+        <h2 class="cat-title"><span class="cat-flag">🇮🇹</span> Pizzas Classiques</h2>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-cat="classique">
+            <div class="menu-card-header">
+              <h3>Margherita</h3>
+              <div class="price-group">
+                <span>9€</span><span>13€</span><span>16€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, basilic frais</p>
+            <span class="tag tag-veg">🌿 Végé</span>
+          </div>
+
+          <div class="menu-card" data-cat="classique">
+            <div class="menu-card-header">
+              <h3>Reine</h3>
+              <div class="price-group">
+                <span>10€</span><span>14€</span><span>17€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, jambon, champignons</p>
+          </div>
+
+          <div class="menu-card" data-cat="classique">
+            <div class="menu-card-header">
+              <h3>Napolitaine</h3>
+              <div class="price-group">
+                <span>10€</span><span>14€</span><span>17€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, anchois, olives, câpres</p>
+          </div>
+
+          <div class="menu-card" data-cat="classique">
+            <div class="menu-card-header">
+              <h3>4 Fromages</h3>
+              <div class="price-group">
+                <span>11€</span><span>15€</span><span>18€</span>
+              </div>
+            </div>
+            <p>Mozzarella, gorgonzola, emmental, chèvre</p>
+            <span class="tag tag-veg">🌿 Végé</span>
+          </div>
+
+          <div class="menu-card" data-cat="classique">
+            <div class="menu-card-header">
+              <h3>Calzone</h3>
+              <div class="price-group">
+                <span>11€</span><span>15€</span><span>18€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, jambon, œuf (pizza fermée)</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATÉGORIE : VIANDES -->
+      <div class="menu-category" id="cat-viande">
+        <h2 class="cat-title"><span class="cat-flag">🥩</span> Pizzas aux Viandes</h2>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-cat="viande">
+            <div class="menu-card-header">
+              <h3>Royale</h3>
+              <div class="price-group">
+                <span>12€</span><span>16€</span><span>19€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, jambon, chorizo, poivrons, olives</p>
+            <span class="tag tag-best">⭐ Bestseller</span>
+          </div>
+
+          <div class="menu-card" data-cat="viande">
+            <div class="menu-card-header">
+              <h3>Carnivore</h3>
+              <div class="price-group">
+                <span>13€</span><span>17€</span><span>20€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, jambon, merguez, bœuf haché, bacon</p>
+          </div>
+
+          <div class="menu-card" data-cat="viande">
+            <div class="menu-card-header">
+              <h3>Orientale</h3>
+              <div class="price-group">
+                <span>12€</span><span>16€</span><span>19€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, merguez, poivrons, oignons, harissa</p>
+            <span class="tag tag-hot">🌶️ Épicée</span>
+          </div>
+
+          <div class="menu-card" data-cat="viande">
+            <div class="menu-card-header">
+              <h3>Poulet BBQ</h3>
+              <div class="price-group">
+                <span>12€</span><span>16€</span><span>19€</span>
+              </div>
+            </div>
+            <p>Sauce BBQ, mozzarella, poulet grillé, oignons, maïs</p>
+            <span class="tag tag-best">⭐ Bestseller</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATÉGORIE : VEGETARIENNES -->
+      <div class="menu-category" id="cat-vegetarienne">
+        <h2 class="cat-title"><span class="cat-flag">🌿</span> Pizzas Végétariennes</h2>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-cat="vegetarienne">
+            <div class="menu-card-header">
+              <h3>Primavera</h3>
+              <div class="price-group">
+                <span>11€</span><span>15€</span><span>18€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, aubergines, courgettes, poivrons, olives</p>
+            <span class="tag tag-veg">🌿 Végé</span>
+          </div>
+
+          <div class="menu-card" data-cat="vegetarienne">
+            <div class="menu-card-header">
+              <h3>Chèvre Miel</h3>
+              <div class="price-group">
+                <span>11€</span><span>15€</span><span>18€</span>
+              </div>
+            </div>
+            <p>Crème fraîche, chèvre, miel, noix, roquette</p>
+            <span class="tag tag-veg">🌿 Végé</span>
+          </div>
+
+          <div class="menu-card" data-cat="vegetarienne">
+            <div class="menu-card-header">
+              <h3>Champignons</h3>
+              <div class="price-group">
+                <span>10€</span><span>14€</span><span>17€</span>
+              </div>
+            </div>
+            <p>Crème, mozzarella, champignons variés, ail, persil</p>
+            <span class="tag tag-veg">🌿 Végé</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATÉGORIE : SPÉCIALES -->
+      <div class="menu-category" id="cat-speciale">
+        <h2 class="cat-title"><span class="cat-flag">⭐</span> Pizzas Spéciales</h2>
+        <div class="menu-grid">
+
+          <div class="menu-card highlight-card" data-cat="speciale">
+            <div class="menu-card-header">
+              <h3>Kebab Pizza</h3>
+              <div class="price-group">
+                <span>12€</span><span>16€</span><span>19€</span>
+              </div>
+            </div>
+            <p>Sauce blanche, mozzarella, viande de kebab, tomates, salade, oignons</p>
+            <span class="tag tag-best">⭐ Bestseller</span>
+          </div>
+
+          <div class="menu-card highlight-card" data-cat="speciale">
+            <div class="menu-card-header">
+              <h3>Chez Anas Signature</h3>
+              <div class="price-group">
+                <span>13€</span><span>17€</span><span>21€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, poulet, chorizo, poivrons tricolores, crème fraîche</p>
+            <span class="tag tag-new">🆕 Nouveau</span>
+          </div>
+
+          <div class="menu-card" data-cat="speciale">
+            <div class="menu-card-header">
+              <h3>Surf & Turf</h3>
+              <div class="price-group">
+                <span>14€</span><span>18€</span><span>22€</span>
+              </div>
+            </div>
+            <p>Crème fraîche, mozzarella, crevettes, poulet, poivrons, ail</p>
+          </div>
+
+          <div class="menu-card" data-cat="speciale">
+            <div class="menu-card-header">
+              <h3>Thon Provençal</h3>
+              <div class="price-group">
+                <span>11€</span><span>15€</span><span>18€</span>
+              </div>
+            </div>
+            <p>Tomate, mozzarella, thon, olives, câpres, oignons rouges</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DESSERTS & BOISSONS -->
+      <div class="menu-category">
+        <h2 class="cat-title"><span class="cat-flag">🥤</span> Boissons & Desserts</h2>
+        <div class="menu-grid">
+          <div class="menu-card" data-cat="all">
+            <div class="menu-card-header">
+              <h3>Coca-Cola</h3>
+              <div class="price-group"><span>2€</span></div>
+            </div>
+            <p>33cl – Original, Zero ou Cherry</p>
+          </div>
+          <div class="menu-card" data-cat="all">
+            <div class="menu-card-header">
+              <h3>Eau minérale</h3>
+              <div class="price-group"><span>1.5€</span></div>
+            </div>
+            <p>50cl plate ou gazeuse</p>
+          </div>
+          <div class="menu-card" data-cat="all">
+            <div class="menu-card-header">
+              <h3>Tiramisu</h3>
+              <div class="price-group"><span>4€</span></div>
+            </div>
+            <p>Fait maison, café & mascarpone</p>
+          </div>
+          <div class="menu-card" data-cat="all">
+            <div class="menu-card-header">
+              <h3>Nutella Pizza</h3>
+              <div class="price-group"><span>5€</span></div>
+            </div>
+            <p>Pâte sucrée, Nutella, noisettes concassées</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <p>📞 Commandez maintenant : <a href="tel:0987004520"><strong>09.87.00.45.20</strong></a></p>
+  </div>
+
+  <footer>
+    <div class="footer-logo">
+      <span class="yellow">Chez Anas</span> <span class="red">PIZZA</span>
+    </div>
+    <p>📞 09.87.00.45.20 &nbsp;|&nbsp; 🌐 www.lapizza-montereau.fr</p>
+    <p class="footer-copy">© 2026 Chez Anas Pizza – Tous droits réservés</p>
+    <div class="footer-nav">
+      <a href="index.html">Accueil</a>
+      <a href="menu.html">Menu</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
