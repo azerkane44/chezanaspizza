@@ -1,166 +1,770 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chez Anas Pizza – Montereau</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chez Anas Pizza – Montereau-Fault-Yonne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #141414;
+    --card-bg: #1a1a1a;
+    --red: #e01a1a;
+    --red-dark: #b31212;
+    --yellow: #f5c518;
+    --green: #2e8b57;
+    --white: #f5f0e8;
+    --gray: #888;
+    --border: rgba(245,197,24,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--red);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo svg { width: 36px; height: 36px; }
+  .nav-logo span {
+    font-family: 'Bangers', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--yellow);
+  }
+  .nav-logo span em { color: var(--red); font-style: normal; }
+  nav ul {
+    list-style: none;
+    display: flex; gap: 32px;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: var(--white);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  nav ul li a:hover { color: var(--yellow); }
+  .nav-phone {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--yellow);
+    text-decoration: none;
+  }
+  .nav-phone svg { width: 18px; height: 18px; fill: var(--red); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 64px 5% 0;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(224,26,26,0.12) 0%, transparent 70%),
+                var(--black);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px),
+                      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
+    pointer-events: none;
+  }
+  .hero-content {
+    max-width: 560px;
+    z-index: 2;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(224,26,26,0.15);
+    border: 1px solid var(--red);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+  }
+  .hero-badge svg { width: 14px; height: 14px; fill: var(--yellow); }
+  .hero h1 {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    line-height: 0.9;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .hero h1 .chez { color: var(--yellow); display: block; }
+  .hero h1 .anas { color: var(--white); display: block; }
+  .hero h1 .pizza-word {
+    color: var(--red);
+    display: block;
+    -webkit-text-stroke: 2px var(--red-dark);
+  }
+  .hero-sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    color: var(--gray);
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+  .hero-sub strong { color: var(--yellow); }
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+  .btn-primary svg { width: 20px; height: 20px; fill: white; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .btn-secondary:hover { background: var(--yellow); color: var(--black); }
+  .btn-secondary svg { width: 20px; height: 20px; }
+
+  .hero-visual {
+    position: absolute;
+    right: -40px; top: 50%;
+    transform: translateY(-50%);
+    width: clamp(400px, 50vw, 680px);
+    z-index: 1;
+    animation: floatIn 1s .2s ease both;
+  }
+  .hero-visual svg { width: 100%; height: auto; }
+
+  .promo-banner {
+    background: linear-gradient(90deg, var(--red-dark), var(--red));
+    padding: 14px 5%;
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+  .promo-banner span {
+    font-family: 'Bangers', cursive;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    color: white;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .promo-banner span svg { width: 22px; height: 22px; fill: var(--yellow); }
+
+  /* SECTION GENERIC */
+  section { padding: 100px 5%; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .section-title span { color: var(--yellow); }
+  .section-divider {
+    width: 60px; height: 4px;
+    background: var(--red);
+    margin: 16px auto 0;
+    border-radius: 2px;
+  }
+
+  /* FORMULES */
+  #formules { background: var(--dark); }
+  .formules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .formule-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s, border-color .25s;
+  }
+  .formule-card:hover { transform: translateY(-6px); border-color: var(--yellow); }
+  .formule-card.featured {
+    border-color: var(--red);
+    background: linear-gradient(135deg, #1f0a0a, var(--card-bg));
+  }
+  .formule-card.featured::before {
+    content: 'BEST DEAL';
+    position: absolute; top: 16px; right: -28px;
+    background: var(--red);
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    padding: 4px 42px;
+    transform: rotate(45deg);
+    transform-origin: center;
+  }
+  .formule-icon {
+    width: 52px; height: 52px;
+    background: rgba(224,26,26,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .formule-icon svg { width: 28px; height: 28px; fill: var(--red); }
+  .formule-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+  .formule-name {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .formule-desc {
+    font-size: 0.88rem;
+    color: var(--gray);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .formule-price {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    color: var(--yellow);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .formule-price small {
+    font-size: 1.2rem;
+    color: var(--gray);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+  }
+  .formule-detail {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  /* INFOS */
+  #infos { background: var(--black); }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 28px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .info-card-icon {
+    width: 50px; height: 50px;
+    background: rgba(245,197,24,0.08);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .info-card-icon svg { width: 26px; height: 26px; fill: var(--yellow); }
+  .info-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .horaires-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .horaires-list li {
+    display: flex; justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--gray);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .horaires-list li:last-child { border: none; }
+  .horaires-list li strong { color: var(--white); }
+  .delivery-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(46,139,87,0.15);
+    border: 1px solid var(--green);
+    color: #4ecb82;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .delivery-badge svg { width: 18px; height: 18px; fill: #4ecb82; }
+  .address-text {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+  .address-text strong { color: var(--white); display: block; font-size: 1rem; }
+  .phone-link {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+    color: var(--yellow);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: opacity .2s;
+  }
+  .phone-link:hover { opacity: 0.8; }
+  .phone-link svg { width: 22px; height: 22px; fill: var(--red); }
+
+  /* FOOTER */
+  footer {
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 40px 5%;
+    display: flex;
+    align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Bangers', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--yellow);
+  }
+  .footer-logo em { color: var(--red); font-style: normal; }
+  .footer-copy { font-size: 0.82rem; color: var(--gray); }
+  .footer-social {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .footer-social a {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .2s, background .2s;
+    text-decoration: none;
+  }
+  .footer-social a:hover { border-color: var(--yellow); background: rgba(245,197,24,0.08); }
+  .footer-social svg { width: 18px; height: 18px; fill: var(--gray); }
+  .footer-social a:hover svg { fill: var(--yellow); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(-50%) translateX(60px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .pizza-spin { animation: spin 18s linear infinite; transform-origin: center; }
+
+  /* RIBBON FLAG */
+  .flag-ribbon {
+    display: flex; gap: 4px; align-items: center; margin-bottom: 20px;
+  }
+  .flag-ribbon span {
+    width: 28px; height: 6px; border-radius: 3px;
+  }
+  .flag-ribbon .f-green { background: var(--green); }
+  .flag-ribbon .f-white { background: #eee; }
+  .flag-ribbon .f-red { background: var(--red); }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hero-visual { display: none; }
+    .hero-content { max-width: 100%; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-chez">Chez Anas</span>
-        <span class="logo-pizza">PIZZA</span>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <!-- Pizza slice SVG logo -->
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="17" fill="#e01a1a" stroke="#b31212" stroke-width="1.5"/>
+      <path d="M18 4 L32 28 Q18 34 4 28 Z" fill="#f5c518"/>
+      <circle cx="14" cy="20" r="2.5" fill="#e01a1a"/>
+      <circle cx="21" cy="14" r="1.8" fill="#e01a1a"/>
+      <circle cx="19" cy="23" r="1.5" fill="#b31212"/>
+      <path d="M18 4 L32 28 L4 28 Z" fill="none" stroke="#b31212" stroke-width="1.5"/>
+    </svg>
+    <span>Chez Anas <em>PIZZA</em></span>
+  </div>
+  <ul>
+    <li><a href="#formules">Formules</a></li>
+    <li><a href="#infos">Infos & Horaires</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0987004520" class="nav-phone">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    09.87.00.45.20
+  </a>
+</nav>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner" style="margin-top:64px;">
+  <span>
+    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    1 PIZZA ACHETÉE = 1 PIZZA OFFERTE
+  </span>
+  <span style="color: rgba(255,255,255,0.5);">|</span>
+  <span>
+    <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+    LIVRAISON GRATUITE DÈS 15€
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-content">
+    <div class="flag-ribbon">
+      <span class="f-green"></span>
+      <span class="f-white"></span>
+      <span class="f-red"></span>
+    </div>
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      À votre service depuis 17 ans
+    </div>
+    <h1>
+      <span class="chez">CHEZ</span>
+      <span class="anas">ANAS</span>
+      <span class="pizza-word">PIZZA</span>
+    </h1>
+    <p class="hero-sub">
+      Pizzeria artisanale à <strong>Montereau-Fault-Yonne</strong>.<br>
+      Pâtes fraîches, ingrédients de qualité, cuisson au four — <strong>ouvert 7j/7</strong>.
+    </p>
+    <div class="hero-cta">
+      <a href="tel:0987004520" class="btn-primary">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Commander
       </a>
-      <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Accueil</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-bg-stripe stripe-green"></div>
-    <div class="hero-bg-stripe stripe-white"></div>
-    <div class="hero-bg-stripe stripe-red"></div>
-    <div class="hero-content">
-      <p class="hero-sub">🍕 Bienvenue chez</p>
-      <h1 class="hero-title">
-        <span class="yellow">Chez Anas</span>
-        <span class="red">PIZZA</span>
-      </h1>
-      <p class="hero-desc">Pizza artisanale, généreuse et savoureuse – livrée ou à emporter à Montereau.</p>
-      <div class="hero-promo">
-        <span class="promo-badge">🎉 OFFRE SPÉCIALE</span>
-        <p>1 Pizza achetée = <strong>1 Pizza offerte !</strong></p>
-      </div>
-      <div class="hero-cta">
-        <a href="menu.html" class="btn btn-primary">Voir le menu</a>
-        <a href="tel:0987004520" class="btn btn-outline">📞 Commander</a>
-      </div>
-    </div>
-    <div class="hero-chef">
-      <div class="chef-circle">
-        <span class="chef-emoji">👨‍🍳</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- PROMO BANNER -->
-  <div class="marquee-bar">
-    <div class="marquee-track">
-      🍕 1 Pizza achetée = 1 Pizza offerte &nbsp;•&nbsp; 🍕 Livraison rapide &nbsp;•&nbsp; 🍕 Pâte maison &nbsp;•&nbsp; 🍕 Ouvert 7j/7 &nbsp;•&nbsp; 🍕 1 Pizza achetée = 1 Pizza offerte &nbsp;•&nbsp; 🍕 Livraison rapide &nbsp;•&nbsp; 🍕 Pâte maison &nbsp;•&nbsp; 🍕 Ouvert 7j/7 &nbsp;•&nbsp;
+      <a href="#formules" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 5l7 7-7 7"/></svg>
+        Voir les formules
+      </a>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container">
-      <h2 class="section-title">Pourquoi nous choisir ?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🍅</div>
-          <h3>Ingrédients frais</h3>
-          <p>Des produits sélectionnés avec soin pour vous offrir le meilleur goût à chaque bouchée.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔥</div>
-          <h3>Four à haute température</h3>
-          <p>Cuisson parfaite pour une pâte croustillante et des saveurs authentiques.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3>Livraison rapide</h3>
-          <p>Votre pizza arrive chaude et généreuse directement chez vous.</p>
-        </div>
-        <div class="feature-card featured">
-          <div class="feature-icon">🎁</div>
-          <h3>Offre 1+1</h3>
-          <p>1 pizza achetée = 1 pizza offerte ! Une générosité à l'italienne.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Pizza illustration SVG -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <!-- Glow -->
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#e01a1a" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#e01a1a" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="shadow">
+          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#e01a1a" flood-opacity="0.3"/>
+        </filter>
+      </defs>
+      <circle cx="300" cy="300" r="280" fill="url(#glow)"/>
+      <!-- Pizza base -->
+      <g class="pizza-spin" style="transform-origin:300px 300px">
+        <circle cx="300" cy="300" r="240" fill="#c8860a" filter="url(#shadow)"/>
+        <circle cx="300" cy="300" r="228" fill="#e8a020"/>
+        <circle cx="300" cy="300" r="210" fill="#d44a10"/>
+        <circle cx="300" cy="300" r="195" fill="#e05010"/>
+        <!-- Cheese -->
+        <circle cx="300" cy="300" r="185" fill="#f5c518" opacity="0.9"/>
+        <!-- Sauce patches -->
+        <ellipse cx="270" cy="280" rx="45" ry="38" fill="#cc2200" opacity="0.7"/>
+        <ellipse cx="340" cy="320" rx="38" ry="30" fill="#cc2200" opacity="0.6"/>
+        <ellipse cx="300" cy="350" rx="50" ry="35" fill="#cc2200" opacity="0.65"/>
+        <!-- Pepperoni -->
+        <circle cx="260" cy="265" r="22" fill="#8b1a1a"/>
+        <circle cx="260" cy="265" r="17" fill="#b22222"/>
+        <circle cx="345" cy="255" r="20" fill="#8b1a1a"/>
+        <circle cx="345" cy="255" r="15" fill="#b22222"/>
+        <circle cx="310" cy="330" r="21" fill="#8b1a1a"/>
+        <circle cx="310" cy="330" r="16" fill="#b22222"/>
+        <circle cx="245" cy="330" r="18" fill="#8b1a1a"/>
+        <circle cx="245" cy="330" r="13" fill="#b22222"/>
+        <circle cx="360" cy="310" r="19" fill="#8b1a1a"/>
+        <circle cx="360" cy="310" r="14" fill="#b22222"/>
+        <!-- Olives -->
+        <ellipse cx="290" cy="300" rx="12" ry="8" fill="#1a1a1a"/>
+        <ellipse cx="330" cy="275" rx="11" ry="7" fill="#1a1a1a"/>
+        <ellipse cx="275" cy="350" rx="10" ry="7" fill="#1a1a1a"/>
+        <!-- Bell peppers -->
+        <path d="M320 355 Q330 345 340 355 Q335 368 325 368 Z" fill="#2e8b57" opacity="0.9"/>
+        <path d="M240 295 Q248 287 256 295 Q252 305 244 305 Z" fill="#f5a623" opacity="0.9"/>
+        <path d="M355 340 Q362 332 370 340 Q366 350 358 350 Z" fill="#2e8b57" opacity="0.9"/>
+        <!-- Mushrooms -->
+        <ellipse cx="295" cy="255" rx="13" ry="9" fill="#d4b483"/>
+        <rect x="291" y="254" width="8" height="10" rx="2" fill="#c8a875"/>
+      </g>
+      <!-- Pizza slice highlight -->
+      <path d="M300 300 L300 80 A220 220 0 0 1 488 400 Z" fill="white" opacity="0.04"/>
+    </svg>
+  </div>
+</section>
 
-  <!-- MENU APERÇU -->
-  <section class="menu-preview">
-    <div class="container">
-      <h2 class="section-title">Nos pizzas vedettes</h2>
-      <div class="pizza-grid">
-        <div class="pizza-card">
-          <div class="pizza-img">🍕</div>
-          <h3>Margherita</h3>
-          <p>Tomate, mozzarella, basilic frais</p>
-          <span class="price">À partir de 9€</span>
-        </div>
-        <div class="pizza-card">
-          <div class="pizza-img">🍕</div>
-          <h3>4 Fromages</h3>
-          <p>Mozzarella, gorgonzola, emmental, chèvre</p>
-          <span class="price">À partir de 11€</span>
-        </div>
-        <div class="pizza-card">
-          <div class="pizza-img">🍕</div>
-          <h3>Royale</h3>
-          <p>Tomate, jambon, champignons, olives, poivrons</p>
-          <span class="price">À partir de 12€</span>
-        </div>
-        <div class="pizza-card">
-          <div class="pizza-img">🍕</div>
-          <h3>Kebab Pizza</h3>
-          <p>Sauce blanche, viande grillée, oignons, crudités</p>
-          <span class="price">À partir de 12€</span>
-        </div>
-      </div>
-      <div class="center-btn">
-        <a href="menu.html" class="btn btn-primary">Voir tout le menu →</a>
-      </div>
-    </div>
-  </section>
+<!-- FORMULES -->
+<section id="formules">
+  <div class="section-header reveal">
+    <div class="section-tag">Nos offres</div>
+    <div class="section-title">LES <span>FORMULES</span></div>
+    <div class="section-divider"></div>
+  </div>
 
-  <!-- INFOS PRATIQUES -->
-  <section class="infos">
-    <div class="container infos-grid">
-      <div class="info-block">
-        <h3>📍 Adresse</h3>
-        <p>Montereau-Fault-Yonne<br />Île-de-France</p>
-      </div>
-      <div class="info-block">
-        <h3>📞 Téléphone</h3>
-        <p><a href="tel:0987004520">09.87.00.45.20</a></p>
-      </div>
-      <div class="info-block">
-        <h3>🕐 Horaires</h3>
-        <p>Lun – Dim : 11h00 – 22h30</p>
-      </div>
-      <div class="info-block">
-        <h3>🌐 Site web</h3>
-        <p><a href="http://www.lapizza-montereau.fr" target="_blank">lapizza-montereau.fr</a></p>
-      </div>
-    </div>
-  </section>
+  <div class="formules-grid">
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">
-      <span class="yellow">Chez Anas</span> <span class="red">PIZZA</span>
+    <!-- Méga -->
+    <div class="formule-card featured reveal">
+      <div class="formule-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
+      <div class="formule-tag">Tous les jours</div>
+      <div class="formule-name">2 PIZZAS MÉGA</div>
+      <div class="formule-desc">2 grandes pizzas de 40 cm au choix, idéal pour partager ou avoir les restes du lendemain.</div>
+      <div class="formule-price">23€</div>
+      <div class="formule-detail">Taille Méga 40 cm</div>
     </div>
-    <p>📞 09.87.00.45.20 &nbsp;|&nbsp; 🌐 www.lapizza-montereau.fr</p>
-    <p class="footer-copy">© 2026 Chez Anas Pizza – Tous droits réservés</p>
-    <div class="footer-nav">
-      <a href="index.html">Accueil</a>
-      <a href="menu.html">Menu</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <!-- Étudiant -->
+    <div class="formule-card reveal">
+      <div class="formule-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4.82L21 9 12 3zm6 13H6v-3.82l6 3.28 6-3.28V16z"/></svg>
+      </div>
+      <div class="formule-tag">Tous les jours jusqu'à 22h</div>
+      <div class="formule-name">MENU ÉTUDIANT</div>
+      <div class="formule-desc">1 pizza Senior + 1 boisson 33cl. Le combo parfait à petit prix.</div>
+      <div class="formule-price">7€</div>
+      <div class="formule-detail">Pizza Senior 31 cm + boisson 33cl</div>
+    </div>
+
+    <!-- 2 Senior -->
+    <div class="formule-card reveal">
+      <div class="formule-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <div class="formule-tag">Tous les jours</div>
+      <div class="formule-name">2 PIZZAS SENIOR</div>
+      <div class="formule-desc">2 pizzas Senior au choix pour se régaler à deux sans se ruiner.</div>
+      <div class="formule-price">16€</div>
+      <div class="formule-detail">Taille Senior 31 cm × 2</div>
+    </div>
+
+    <!-- Lundi -->
+    <div class="formule-card reveal">
+      <div class="formule-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+      </div>
+      <div class="formule-tag">Tous les lundis</div>
+      <div class="formule-name">FORMULE DU LUNDI</div>
+      <div class="formule-desc">La pizza Senior de votre choix à prix ultra cassé. Commencez la semaine avec une bonne pizza !</div>
+      <div class="formule-price">7€</div>
+      <div class="formule-detail">Taille Senior 31 cm</div>
+    </div>
+
+    <!-- 3 Pizzas -->
+    <div class="formule-card reveal" style="grid-column: span 1;">
+      <div class="formule-icon">
+        <svg viewBox="0 0 24 24"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+      </div>
+      <div class="formule-tag">Au choix – avec livraison</div>
+      <div class="formule-name">3 PIZZAS</div>
+      <div class="formule-desc">3 pizzas Senior au choix livrées chez vous. La formule familiale par excellence.</div>
+      <div class="formule-price">30€</div>
+      <div class="formule-detail">Taille Senior 31 cm × 3 · livraison incluse</div>
+    </div>
+
+    <!-- 1+1 offerte -->
+    <div class="formule-card reveal" style="border-color: var(--yellow); background: linear-gradient(135deg, #1a1700, var(--card-bg));">
+      <div class="formule-icon" style="background: rgba(245,197,24,0.1);">
+        <svg viewBox="0 0 24 24" fill="#f5c518"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.54 15.73 1 13.55 1c-1.3 0-2.4.65-3.55 2.09C8.85 1.65 7.75 1 6.45 1 4.27 1 2 2.54 2 4.64c0 .48.11.92.18 1.36H0v2h24V6h-4zM13.55 3c.97 0 2.45.54 2.45 1.64 0 1-.81 1.36-1.45 1.36H12.5C12.53 4.87 12.86 3 13.55 3zM6.45 3c.69 0 1.02 1.87 1.05 3H6c-.64 0-1.45-.36-1.45-1.36C4.55 3.54 5.48 3 6.45 3zM2 20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-1H2v1zm2-9v6h6v-6H4zm8 0v6h6v-6h-6z"/></svg>
+      </div>
+      <div class="formule-tag" style="color: var(--yellow);">Offre permanente</div>
+      <div class="formule-name">1 PIZZA OFFERTE</div>
+      <div class="formule-desc">Pour chaque pizza achetée, une pizza identique vous est offerte. L'offre qui fait toujours plaisir.</div>
+      <div class="formule-price" style="font-size: 2rem; color: #f5c518;">1 + 1 <small style="color: var(--green); font-family: 'Bangers', cursive; font-size: 1.4rem;">GRATUIT</small></div>
+      <div class="formule-detail">Disponible sur place et à emporter</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INFOS -->
+<section id="infos">
+  <div class="section-header reveal">
+    <div class="section-tag">Pratique</div>
+    <div class="section-title">INFOS <span>UTILES</span></div>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="infos-grid">
+
+    <!-- Horaires -->
+    <div class="info-card reveal">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+      </div>
+      <h3>Horaires d'ouverture</h3>
+      <ul class="horaires-list">
+        <li><strong>Lundi – Jeudi</strong><span>11h-14h · 17h30-23h</span></li>
+        <li><strong>Vendredi – Dimanche</strong><span>11h-14h · 17h30-00h</span></li>
+      </ul>
+      <div class="delivery-badge">
+        <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        Livraison gratuite dès 15€
+      </div>
+    </div>
+
+    <!-- Contact & Adresse -->
+    <div class="info-card reveal" id="contact">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <h3>Nous trouver</h3>
+      <div class="address-text">
+        <strong>Chez Anas Pizza</strong>
+        5 Place du Marché au Blé<br>
+        Montereau-Fault-Yonne<br>
+        77130
+      </div>
+      <a href="tel:0987004520" class="phone-link">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        09.87.00.45.20
+      </a>
+      <a href="tel:0985026359" class="phone-link" style="font-size: 1rem; color: var(--gray);">
+        <svg viewBox="0 0 24 24" style="fill: var(--gray)"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        09.85.02.63.59
+      </a>
+    </div>
+
+    <!-- Commande en ligne -->
+    <div class="info-card reveal">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      </div>
+      <h3>Commander en ligne</h3>
+      <div class="address-text" style="margin-bottom: 16px;">
+        Commandez directement sur notre site ou via Uber Eats pour une livraison rapide à domicile.
+      </div>
+      <a href="http://www.lapizza-montereau.fr" target="_blank" class="btn-primary" style="font-size: 0.88rem; padding: 12px 20px;">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+        lapizza-montereau.fr
+      </a>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:12px;">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#06c167"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        <span style="font-family:'Oswald',sans-serif;font-weight:700;color:#06c167;font-size:1rem;">Uber Eats</span>
+        <span style="font-size:0.8rem;color:var(--gray);">disponible</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Chez Anas <em>PIZZA</em></div>
+    <div class="footer-copy" style="margin-top:6px;">5 Place du Marché au Blé · 77130 Montereau-Fault-Yonne</div>
+  </div>
+  <div class="footer-copy">© 2024 Chez Anas Pizza · À votre service depuis 17 ans</div>
+  <div class="footer-social">
+    <!-- Snapchat icon -->
+    <a href="#" title="Snapchat @chezanaspizza77">
+      <svg viewBox="0 0 24 24"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.49-.104.338 0 .714.159.714.49 0 .316-.354.504-.484.559-.018.007-.048.016-.084.026-.35.094-1.335.39-1.456 1.287-.007.051-.007.102-.007.153 0 .167.028.335.053.523.114.862.317 2.418-.988 3.75-1.498 1.533-3.953 2.168-7.159 1.978a4.67 4.67 0 0 1-.286.019 4.67 4.67 0 0 1-.53-.033c-3.125.164-5.524-.47-6.998-1.978-1.303-1.333-1.1-2.889-.987-3.75.026-.188.052-.356.052-.524 0-.051 0-.102-.007-.152-.12-.897-1.106-1.193-1.456-1.287-.037-.01-.065-.019-.084-.026C2.354 10.008 2 9.82 2 9.504c0-.331.376-.49.714-.49.146 0 .325.016.49.104.374.181.733.285 1.033.301.198 0 .326-.045.401-.09l-.031-.51-.003-.06c-.104-1.628-.23-3.654.299-4.847C6.453 1.069 9.81.793 12.206.793z"/></svg>
+    </a>
+    <!-- Website icon -->
+    <a href="http://www.lapizza-montereau.fr" target="_blank" title="Site web">
+      <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
